@@ -1,200 +1,65 @@
-<h1 id="argon-design-system"><a href="https://www.creative-tim.com/product/vue-argon-design-system">Vue Argon Design System</a></h1>
+# 如何維護資財考古題系統
+> 資財考古系統製作人: [吳宗叡](https://iceglitter632.github.io/AboutMe/)
 
-<p><img src="https://s3.amazonaws.com/creativetim_bucket/products/92/original/opt_argon_vue_thumbnail.jpg?1534236902" alt="Product Gif" /></p>
+---
 
-<p>Start your development with a Design System for Bootstrap 4. It is open source, free and it features many components that can help you create amazing websites.</p>
+### 關於資財考古題系統
+此系統是用vue作為前端，express為後端。在一切都開始之前要先確認伺服器是否有設定好該用的dependencies:
+1. 安裝 [Node.js](https://nodejs.org/en/)
+2. `git clone https://github.com/Iceglitter632/NYCUIMF_test`
+3. `cd <main directory>` 到 `package.json` 的位置(共兩個，一在Client，一在api)
+4. 開啟shell執行`npm install`
+5. 同樣在shell執行`npm start`可開始local development
+---
 
-<h4 id="fully-coded-components">Fully Coded Components</h4>
+### 前端架構
+前端的部分寫在**Client**中，裡面的資料夾結構為:
+* node_modules
+* public
+* src
+* package.json
+* 其他不太重要
 
-<p>Vue Argon Design System is built with over 100 individual components, giving you the freedom of choosing and combining. All components can take variations in colour, that you can easily modify using SASS files.</p>
+在這些資料夾中，又以`src`最重要等等會重點講解。
+#### 1. Public
+先講 public，此資料夾可放一些放存在本機的照片、資料等。一般情況下放在本機的資料是不會被推上網路的，只有放在public裡面的資料可以。因此若要放自己畫的照片或自己從其他地方下載的照片都要放在這個資料夾裡面。
 
-<p>You will save a lot of time going from prototyping to full-functional code, because all elements are implemented. This Design System is coming with prebuilt examples, so the development process is seamless, switching from our pages to the real website is very easy to be done.</p>
+#### 2. package.json
+`package.json`裡面儲存的是此個project需要下載的東西有哪些，在前面安裝時所下的`npm install`就是把`package.json`裡要求的東西載下來。
+`package.json`就有點像是python的pip，在python中要用`pip install`來下載新的module，而在vue裡面就會存在`package.json`中
 
-<p>Every element has multiple states for colors, styles, hover, focus, that you can easily access and use.</p>
+### node_modules
+其實我也沒有很知道，有興趣自己想辦法
 
-<h4 id="complex-documentation">Complex Documentation</h4>
+### src
+**src**是裡面最重要的東西，點開後裡面又會有好幾個資料夾，一樣這邊在來簡介一下
+* assets
+* components*
+* directives
+* layout*
+* plugins
+* services*
+* views*
+* App.vue*
+* main.js*
+* Router.js*
 
-<p>Each element is well presented in a very complex documentation. You can read more about the idea behind this design system here. You can check the components here and the foundation here.</p>
+後面有打 * 的表示這些檔案是比較重要的，下面只會有非常簡單的介紹，大致上以後如果要加其他的功能就按照分類寫進去吧。有問題都可以問喔。
 
-<h4 id="example-pages">Example Pages</h4>
+#### 1. components
+Components是vue裡面的基本，大概可以想像成一個頁面的小部分，由於本次project是利用[此模板](https://demos.creative-tim.com/vue-argon-design-system/documentation/)。裡面有很多components已經幫忙寫好了，記得import就可以使用了。基本上不用做甚麼修改，可以參考上述網頁的範例在自行修改。
 
-<p>If you want to get inspiration or just show something directly to your clients, you can jump start your development with our pre-built example pages. You will be able to quickly set up the basic structure for your web project.</p>
+#### 2. layout/views
+Layout就是把上面的components結合起來的一個頁面，大多就是把前面的components結合起來加上一些自己的排版。
 
-<h2 id="table-of-contents">Table of Contents</h2>
+#### 3. services
+Services是連結後端的部分，裡面寫的都是request後端的程式，包含下載檔案，抓取檔案等。若要寫連結後端的東西就寫在這邊吧。
 
-<ul>
-  <li><a href="#demo">Demo</a></li>
-  <li><a href="#quick-start">Quick Start</a></li>
-  <li><a href="#documentation">Documentation</a></li>
-  <li><a href="#file-structure">File Structure</a></li>
-  <li><a href="#browser-support">Browser Support</a></li>
-  <li><a href="#resources">Resources</a></li>
-  <li><a href="#reporting-issues">Reporting Issues</a></li>
-  <li><a href="#technical-support-or-questions">Technical Support or Questions</a></li>
-  <li><a href="#licensing">Licensing</a></li>
-  <li><a href="#useful-links">Useful Links</a></li>
-</ul>
+#### 4. App.vue / main.js
+基本上就是main function，裡面看起來極為精簡，大致上也不太需要動他。
 
-<h2 id="demo">Demo</h2>
+#### 5. Router.js
+Router.js很重要，裡面寫的是每個不同的url該呈現什麼網頁。一般網頁一般可以分成三個，header、body、footer。不像一般的html可以利用`<a href="xxx"><a>`來轉到其他檔案，`.vue`檔無法透過直接`href`來改變url，只好透過router來定義。(或是有其他方法，但我不會)
 
-<ul>
-  <li><a href="https://demos.creative-tim.com/vue-argon-design-system">Index Page</a></li>
-  <li><a href="https://demos.creative-tim.com/vue-argon-design-system/#/landing">Landing page</a></li>
-  <li><a href="https://demos.creative-tim.com/vue-argon-design-system/#/profile">Profile Page</a></li>
-  <li><a href="https://demos.creative-tim.com/vue-argon-design-system/#/login">Login Page</a></li>
-  <li><a href="https://demos.creative-tim.com/vue-argon-design-system/#/register">Register Page</a></li>
-</ul>
-
-<p><a href="https://demos.creative-tim.com/argon-design-system">View More</a></p>
-
-<h2 id="quick-start">Quick start</h2>
-
-<ul>
-  <li><a href="https://github.com/creativetimofficial/vue-argon-design-system/archive/master.zip">Download from Github</a>.</li>
-  <li><a href="https://www.creative-tim.com/product/vue-argon-design-system">Download from Creative Tim</a>.</li>
-  <li>Clone the repo: <code class="highlighter-rouge">git clone https://github.com/creativetimofficial/vue-argon-design-system.git</code>.</li>
-</ul>
-
-<h2 id="documentation">Documentation</h2>
-
-<p>The documentation for the Vue Argon Design System is hosted at our <a href="https://demos.creative-tim.com/vue-argon-design-system">website</a>.</p>
-
-<h2 id="file-structure">File Structure</h2>
-
-<p>Within the download you’ll find the following directories and files:</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>argon/
-|-- vue-argon-design-system
-    |-- App.vue
-    |-- main.js
-    |-- router.js
-    |-- assets
-    |   |-- scss
-    |   |   |-- argon.scss
-    |   |   |-- bootstrap
-    |   |   |-- custom
-    |   |-- vendor
-    |       |-- font-awesome
-    |       |   |-- css
-    |       |   |   |-- font-awesome.css
-    |       |   |   |-- font-awesome.min.css
-    |       |   |-- fonts
-    |       |       |-- FontAwesome.otf
-    |       |       |-- fontawesome-webfont.eot
-    |       |       |-- fontawesome-webfont.svg
-    |       |       |-- fontawesome-webfont.ttf
-    |       |       |-- fontawesome-webfont.woff
-    |       |       |-- fontawesome-webfont.woff2
-    |       |-- nucleo
-    |           |-- css
-    |           |   |-- nucleo-svg.css
-    |           |   |-- nucleo.css
-    |           |-- fonts
-    |               |-- nucleo-icons.eot
-    |               |-- nucleo-icons.svg
-    |               |-- nucleo-icons.ttf
-    |               |-- nucleo-icons.woff
-    |               |-- nucleo-icons.woff2
-    |-- components
-    |   |-- Badge.vue
-    |   |-- BaseButton.vue
-    |   |-- BaseCheckbox.vue
-    |   |-- BaseInput.vue
-    |   |-- BaseNav.vue
-    |   |-- BaseRadio.vue
-    |   |-- BaseSlider.vue
-    |   |-- BaseSwitch.vue
-    |   |-- Card.vue
-    |   |-- CloseButton.vue
-    |   |-- Icon.vue
-    |   |-- NavbarToggleButton.vue
-    |-- layout
-    |   |-- AppFooter.vue
-    |   |-- AppHeader.vue
-    |-- plugins
-    |   |-- argon-kit.js
-    |   |-- globalComponents.js
-    |   |-- globalDirectives.js
-    |-- views
-        |-- Components.vue
-        |-- Landing.vue
-        |-- Login.vue
-        |-- Profile.vue
-        |-- Register.vue
-        |-- components
-            |-- BasicElements.vue
-            |-- Carousel.vue
-            |-- CustomControls.vue
-            |-- DownloadSection.vue
-            |-- Examples.vue
-            |-- Hero.vue
-            |-- Icons.vue
-            |-- Inputs.vue
-            |-- JavascriptComponents.vue
-            |-- Navigation.vue
-
-</code></pre></div></div>
-
-<h2 id="browser-support">Browser Support</h2>
-
-<p>At present, we officially aim to support the last two versions of the following browsers:</p>
-
-<p><img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/chrome.png" width="64" height="64" />
-<img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/firefox.png" width="64" height="64" />
-<img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/edge.png" width="64" height="64" />
-<img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/safari.png" width="64" height="64" />
-<img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/opera.png" width="64" height="64" /></p>
-
-<h2 id="resources">Resources</h2>
-
-<ul>
-  <li>Demo: <a href="https://demos.creative-tim.com/argon-design-system">https://demos.creative-tim.com/vue-argon-design-system</a></li>
-  <li>Download: <a href="https://www.creative-tim.com/product/vue-argon-design-system">https://www.creative-tim.com/product/vue-argon-design-system</a></li>
-  <li>License Agreement: <a href="https://www.creative-tim.com/license">https://www.creative-tim.com/license</a></li>
-  <li>Support: <a href="https://www.creative-tim.com/contact-us">https://www.creative-tim.com/contact-us</a></li>
-  <li>Issues: <a href="https://github.com/creativetimofficial/vue-argon-design-system/issues">Github Issues Page</a></li>
-</ul>
-
-<h2 id="reporting-issues">Reporting Issues</h2>
-
-<p>We use GitHub Issues as the official bug tracker for the Vue Argon Design System. Here are some advices for our users that want to report an issue:</p>
-
-<ol>
-  <li>Make sure that you are using the latest version of the Vue Argon Design System. Check the CHANGELOG from your copy on our <a href="https://www.creative-tim.com">website</a>.</li>
-  <li>Providing us reproducible steps for the issue will shorten the time it takes for it to be fixed.</li>
-  <li>Some issues may be browser specific, so specifying in what browser you encountered the issue might help.</li>
-</ol>
-
-<h2 id="technical-support-or-questions">Technical Support or Questions</h2>
-
-<p>If you have questions or need help integrating the product please <a href="https://www.creative-tim.com/contact-us">contact us</a> instead of opening an issue.</p>
-
-<h2 id="licensing">Licensing</h2>
-
-<ul>
-  <li>
-    <p>Copyright © 2018 Creative Tim (https://www.creative-tim.com)</p>
-  </li>
-  <li>
-    <p>Licensed under MIT (https://github.com/creativetimofficial/vue-argon-design-system/blob/master/LICENSE.md)</p>
-  </li>
-</ul>
-
-<h2 id="useful-links">Useful Links</h2>
-
-<ul>
-  <li><a href="https://www.creative-tim.com/bootstrap-themes">More products</a> from Creative Tim</li>
-  <li><a href="https://www.youtube.com/channel/UCVyTG4sCw-rOvB9oHkzZD1w">Tutorials</a></li>
-  <li><a href="https://www.creative-tim.com/bootstrap-themes/free">Freebies</a> from Creative Tim</li>
-  <li><a href="https://www.creative-tim.com/affiliates/new">Affiliate Program</a> (earn money)</li>
-</ul>
-
-<h2 id="social-media">Social Media</h2>
-
-<ul>
-  <li>Twitter: <a href="https://twitter.com/CreativeTim">https://twitter.com/CreativeTim</a></li>
-  <li>Facebook: <a href="https://www.facebook.com/CreativeTim">https://www.facebook.com/CreativeTim</a></li>
-  <li>Dribbble: <a href="https://dribbble.com/creativetim">https://dribbble.com/creativetim</a></li>
-  <li>Google+: <a href="https://plus.google.com/+CreativetimPage">https://plus.google.com/+CreativetimPage</a></li>
-  <li>Instagram: <a href="https://www.instagram.com/CreativeTimOfficial">https://www.instagram.com/CreativeTimOfficial</a></li>
-</ul>
+---
+### 後端架構
