@@ -60,6 +60,3 @@ Services是連結後端的部分，裡面寫的都是request後端的程式，�
 
 #### 5. Router.js
 Router.js很重要，裡面寫的是每個不同的url該呈現什麼網頁。一般網頁一般可以分成三個，header、body、footer。不像一般的html可以利用`<a href="xxx"><a>`來轉到其他檔案，`.vue`檔無法透過直接`href`來改變url，只好透過router來定義。(或是有其他方法，但我不會)
-
----
-### 後端架構
